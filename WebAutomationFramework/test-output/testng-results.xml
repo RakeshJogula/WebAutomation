@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-03-01T01:28:44 IST" name="Suite" finished-at="2022-03-01T01:29:04 IST" duration-ms="19824">
+    <groups>
+    </groups>
+    <test started-at="2022-03-01T01:28:44 IST" name="Test" finished-at="2022-03-01T01:29:04 IST" duration-ms="19824">
+      <class name="com.webautomation.tests.HomePageTests">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webautomation.tests.HomePageTests@194bcebf]" started-at="2022-03-01T01:28:44 IST" name="setUp" finished-at="2022-03-01T01:28:56 IST" duration-ms="12002" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webautomation.tests.HomePageTests@194bcebf]" started-at="2022-03-01T01:28:44 IST" name="setUp" finished-at="2022-03-01T01:28:56 IST" duration-ms="11848" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="test3()[pri:0, instance:com.webautomation.tests.HomePageTests@194bcebf]" started-at="2022-03-01T01:28:56 IST" name="test3" finished-at="2022-03-01T01:29:03 IST" duration-ms="6608" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test3 -->
+        <test-method signature="test4()[pri:0, instance:com.webautomation.tests.HomePageTests@194bcebf]" started-at="2022-03-01T01:28:56 IST" name="test4" finished-at="2022-03-01T01:29:03 IST" duration-ms="6589" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test4 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.webautomation.tests.HomePageTests@194bcebf]" started-at="2022-03-01T01:29:03 IST" name="tearDown" finished-at="2022-03-01T01:29:04 IST" duration-ms="1270" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.webautomation.tests.HomePageTests@194bcebf]" started-at="2022-03-01T01:29:03 IST" name="tearDown" finished-at="2022-03-01T01:29:04 IST" duration-ms="966" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.webautomation.tests.HomePageTests -->
+      <class name="com.webautomation.tests.LoginPageTests">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webautomation.tests.LoginPageTests@17497425]" started-at="2022-03-01T01:28:44 IST" name="setUp" finished-at="2022-03-01T01:28:56 IST" duration-ms="11440" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webautomation.tests.LoginPageTests@17497425]" started-at="2022-03-01T01:28:44 IST" name="setUp" finished-at="2022-03-01T01:28:56 IST" duration-ms="11286" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="test1()[pri:0, instance:com.webautomation.tests.LoginPageTests@17497425]" started-at="2022-03-01T01:28:56 IST" name="test1" finished-at="2022-03-01T01:29:02 IST" duration-ms="6496" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test1 -->
+        <test-method signature="test2()[pri:0, instance:com.webautomation.tests.LoginPageTests@17497425]" started-at="2022-03-01T01:28:56 IST" name="test2" finished-at="2022-03-01T01:29:02 IST" duration-ms="6564" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test2 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.webautomation.tests.LoginPageTests@17497425]" started-at="2022-03-01T01:29:02 IST" name="tearDown" finished-at="2022-03-01T01:29:04 IST" duration-ms="1718" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.webautomation.tests.LoginPageTests@17497425]" started-at="2022-03-01T01:29:02 IST" name="tearDown" finished-at="2022-03-01T01:29:04 IST" duration-ms="1688" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.webautomation.tests.LoginPageTests -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

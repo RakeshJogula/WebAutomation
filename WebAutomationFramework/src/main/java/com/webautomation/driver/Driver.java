@@ -1,8 +1,13 @@
 package com.webautomation.driver;
 
 import java.util.Objects;
+
 import org.openqa.selenium.chrome.ChromeDriver;
-import com.webautomation.constants.FrameworkConstants;
+
+import com.webautomation.enums.ConfigProperties;
+import com.webautomation.utils.PropertyUtils;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public final class Driver {
 	
@@ -10,11 +15,12 @@ public final class Driver {
 		
 	}
 	
-	public static void initDriver() {
+	public static void initDriver() throws Exception {
 		if (Objects.isNull(DriverManager.getDriver())) {
-			System.setProperty("webdriver.chrome.driver", FrameworkConstants.getChromedriverpath());
+			WebDriverManager.chromedriver().setup();
 			DriverManager.setDriver(new ChromeDriver());
-			DriverManager.getDriver().get("https://www.google.com/");
+			DriverManager.getDriver().get(PropertyUtils.get(ConfigProperties.URL));
+			DriverManager.getDriver().manage().window().maximize();
 		}
 	}
 

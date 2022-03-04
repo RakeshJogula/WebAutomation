@@ -6,7 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
 import com.webautomation.dataprovider.ExcelDataProvider;
-import com.webautomation.dataprovider.JSONDataProvider;
 import com.webautomation.pages.OrangeHRMLoginPage;
 
 public final class OrangeHRMTests extends BaseTests{
@@ -15,11 +14,11 @@ public final class OrangeHRMTests extends BaseTests{
 		
 	}
 	
-	//@Test(dataProvider = "jsondata",dataProviderClass = JSONDataProvider.class)
-	public void loginlogutTest(HashMap<String,Object> data) {
+	@Test(dataProvider = "testdata",dataProviderClass = ExcelDataProvider.class)
+	public void loginlogutTest(HashMap<String,String> data) {
 		String title =  new OrangeHRMLoginPage()
-				.enterUsername(data.get("username").toString())
-				.enterPassword(data.get("password").toString())
+				.enterUsername(data.get("Username"))
+				.enterPassword(data.get("Password"))
 				.clickLoginBtn().clickWelcome()
 				.clicklogout()
 				.getTitle();
@@ -30,8 +29,8 @@ public final class OrangeHRMTests extends BaseTests{
 	@Test(dataProvider = "testdata",dataProviderClass = ExcelDataProvider.class)
 	public void MyInfoTest(HashMap<String,String> data) throws Exception {
 		new OrangeHRMLoginPage()
-		.enterUsername("Admin")
-		.enterPassword("admin123")
+		.enterUsername(data.get("Username"))
+		.enterPassword(data.get("Password"))
 		.clickLoginBtn()
 		.clickOnMyInfoTab()
 		.clickOnEditMyInfoTab()

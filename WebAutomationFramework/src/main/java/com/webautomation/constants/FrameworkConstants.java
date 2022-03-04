@@ -1,5 +1,8 @@
 package com.webautomation.constants;
 
+import com.webautomation.enums.ConfigProperties;
+import com.webautomation.utils.PropertyUtils;
+
 /**
  * @author Admin
  *  Made Class as Final in order to avoid extending this class to other class
@@ -17,6 +20,8 @@ public final class FrameworkConstants {
 	private static final String CONFIGPATH = RESOURCEPATH+"/config/config.properties";
 	private static final String EXCELPATH = RESOURCEPATH+"/excel/TestData.xlsx";
 	private static final String JSONPATH = RESOURCEPATH+"/json/testdata.json";
+	private static final String REPORTPATHFOLDER = System.getProperty("user.dir")+"/extent-test-output/";
+	private static String extentReportPath = "";
 	
 	public static String getChromedriverpath() {
 		return CHROMEDRIVERPATH;
@@ -33,9 +38,18 @@ public final class FrameworkConstants {
 	public static String getJsonpath() {
 		return JSONPATH;
 	}
-	
-	
-	
-	
+
+	public static String getReportpath() throws Exception {
+		if(extentReportPath.equals("")) {
+			if (PropertyUtils.get(ConfigProperties.OVERRIDEREPORTS).equalsIgnoreCase("yes")) {
+				extentReportPath = REPORTPATHFOLDER + System.currentTimeMillis() + "_index.html";
+				return extentReportPath;
+			} else {
+				return extentReportPath;
+			}
+		}else {
+			return extentReportPath;
+		}		
+	}
 	
 }

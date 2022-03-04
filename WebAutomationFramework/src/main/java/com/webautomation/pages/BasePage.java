@@ -1,24 +1,30 @@
 package com.webautomation.pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import com.webautomation.driver.DriverManager;
-import com.webautomation.enums.WaitStratergy;
-import com.webautomation.factories.ExplictWaitFactory;
+
+
 
 public class BasePage {
 	
-	protected void click(By by,WaitStratergy waitStratergy) {
-		ExplictWaitFactory.performExplicitWait(by, waitStratergy).click();
+	protected void click(WebElement element) {
+		element.click();
 	}
 	
-	protected void sendkeys(By by,String text,WaitStratergy waitStratergy){
-		ExplictWaitFactory.performExplicitWait(by, waitStratergy).sendKeys(text);
+	protected void sendkeys(WebElement element,String text){
+		element.clear();
+		element.sendKeys(text);
 	}
 	
 	protected String getPageTitle() {
 		return DriverManager.getDriver().getTitle();
 	}
 	
+	protected void selectByVisibleText(WebElement element,String visibleText) {
+		Select select = new Select(element);
+		select.selectByVisibleText(visibleText);
+	}
 
 }

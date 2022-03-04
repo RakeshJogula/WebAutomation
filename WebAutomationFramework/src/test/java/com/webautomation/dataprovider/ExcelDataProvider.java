@@ -1,54 +1,56 @@
 package com.webautomation.dataprovider;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import java.util.List;
+import java.util.Objects;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.DataProvider;
-
-import com.webautomation.constants.FrameworkConstants;
+import com.webautomation.utils.ExcelUtils;
 
 public class ExcelDataProvider {
 	
 	@DataProvider(name = "testdata",parallel = true)
-	public static Object[] getData() throws Exception {
+	public static Object[] getData(Method m) {
 		FileInputStream fileInputStream = null;
 		XSSFWorkbook workbook = null;
-		Object[] data = null;
+		List<HashMap<String, String>> testdataInExcelToBeRun = null;
 		try {
-			fileInputStream = new FileInputStream(FrameworkConstants.getExcelpath());
-			workbook = new XSSFWorkbook(fileInputStream);
-			XSSFSheet sheet = workbook.getSheet("Sheet1");
-
-			int numberOfRows = sheet.getLastRowNum();
-			int numberOfColumns = sheet.getRow(0).getPhysicalNumberOfCells();
-			data = new Object[numberOfRows];
-			Map<String, String> map = null;
-			for (int i = 1; i <= numberOfRows; i++) {
-				map = new HashMap<String, String>();
-				for (int j = 0; j < numberOfColumns; j++) {
-					String key = sheet.getRow(0).getCell(j).getStringCellValue();
-					String value = sheet.getRow(i).getCell(j).getStringCellValue();
-					map.put(key, value);
-					data[i-1] = map;
+			String testName = m.getName();
+			List<HashMap<String, String>> testdataInExcel = ExcelUtils.getTestDetails("DATA");
+			testdataInExcelToBeRun = new ArrayList<HashMap<String,String>>();
+			
+			for(int i=0;i<testdataInExcel.size();i++) {
+				String testcaseNameInExcel = testdataInExcel.get(i).get("TestCaseName");
+				String executeStatusInExcel = testdataInExcel.get(i).get("Execute");
+				if(testcaseNameInExcel.equalsIgnoreCase(testName)) {
+					if(executeStatusInExcel.equalsIgnoreCase("Yes")) {
+						testdataInExcelToBeRun.add(testdataInExcel.get(i));
+					}
+				}
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 finally {
+				try {
+					if (Objects.nonNull(workbook)) {
+						workbook.close();
+					}
+					if (Objects.nonNull(fileInputStream)) {
+						fileInputStream.close();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
-
-		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		} finally {
-			workbook.close();
-			fileInputStream.close();
-		}
-		return data;
+		
+		
+		return testdataInExcelToBeRun.toArray();
 	}
 
 }

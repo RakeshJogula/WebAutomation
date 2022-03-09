@@ -6,17 +6,14 @@ import org.testng.ISuiteListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.webautomation.annotations.FrameworkAnnotations;
 import com.webautomation.reports.ExtentLogger;
 import com.webautomation.reports.ExtentReport;
 
 public class ListenersClass implements ITestListener, ISuiteListener {
 
 	public void onStart(ISuite suite) {
-		try {
 			ExtentReport.initExtentReport();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void onFinish(ISuite suite) {
@@ -29,6 +26,8 @@ public class ListenersClass implements ITestListener, ISuiteListener {
 
 	public void onTestStart(ITestResult result) {
 		ExtentReport.createTest(result.getMethod().getDescription());
+		ExtentReport.assignAuthor(result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(FrameworkAnnotations.class).author());
+		ExtentReport.addCategory(result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(FrameworkAnnotations.class).category());
 	}
 
 	public void onTestSuccess(ITestResult result) {

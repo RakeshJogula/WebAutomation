@@ -19,7 +19,7 @@ public class ExtentManager {
 		extentTest.set(test);
 	}
 
-	public static void removeDriver() {
+	public static void removeCurrentReport () {
 		extentTest.remove();
 	}
 

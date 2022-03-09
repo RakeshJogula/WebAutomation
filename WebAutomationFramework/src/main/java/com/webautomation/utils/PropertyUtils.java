@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.webautomation.constants.FrameworkConstants;
 import com.webautomation.enums.ConfigProperties;
+import com.webautomation.exceptions.PropertyFileUsageException;
 
 /**
  * @author Admin
@@ -35,9 +36,9 @@ public class PropertyUtils {
 		}	
 	}
 	
-	public static String get(ConfigProperties key) throws Exception {
+	public static String get(ConfigProperties key){
 		if(Objects.isNull(key) || Objects.isNull(CONFIGMAP.get(key.name().toLowerCase()))) {
-			throw new Exception("Property Name "+key+"is not found please check config properties");
+			throw new PropertyFileUsageException("Property Name "+key+"is not found please check config properties");
 		}
 		return CONFIGMAP.get(key.name().toLowerCase());
 	}

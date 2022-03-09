@@ -95,7 +95,7 @@ public class OrangeHRMHomePage extends BasePage {
 
 	public OrangeHRMHomePage enterEmployeeId(String employeeId) {
 		try {
-			sendkeys(ExplictWaitFactory.performExplicitWait(txt_employeeId, WaitStratergy.PRESENCE), employeeId);
+			sendkeys(ExplictWaitFactory.performExplicitWait(txt_employeeId, WaitStratergy.CLICKABLE), employeeId);
 			ExtentLogger.pass("Enter Employee Id" + employeeId,true);
 		} catch (Exception e) {
 			ExtentLogger.fail("Enter Employee Id" + employeeId,true);

@@ -5,7 +5,11 @@ import java.util.HashMap;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
+import com.webautomation.annotations.FrameworkAnnotations;
 import com.webautomation.dataprovider.ExcelDataProvider;
+import com.webautomation.enums.Authors;
+import com.webautomation.enums.Category;
+import com.webautomation.listeners.RetryFailedTest;
 import com.webautomation.pages.OrangeHRMLoginPage;
 
 public final class OrangeHRMTests extends BaseTests{
@@ -14,7 +18,8 @@ public final class OrangeHRMTests extends BaseTests{
 		
 	}
 	
-	@Test(dataProvider = "testdata",dataProviderClass = ExcelDataProvider.class)
+	@FrameworkAnnotations(category = Category.SANITY,author = Authors.ADMIN)
+	@Test(dataProvider = "testdata",dataProviderClass = ExcelDataProvider.class,retryAnalyzer = RetryFailedTest.class)
 	public void loginlogutTest(HashMap<String,String> data) {
 		String title =  new OrangeHRMLoginPage()
 				.enterUsername(data.get("Username"))
@@ -25,8 +30,8 @@ public final class OrangeHRMTests extends BaseTests{
 		Assertions.assertThat(title).isEqualTo("OrangeHRM");
 	}
 	
-	
-	@Test(dataProvider = "testdata",dataProviderClass = ExcelDataProvider.class)
+	@FrameworkAnnotations(category = Category.SMOKE,author = Authors.QA1)
+	@Test(dataProvider = "testdata",dataProviderClass = ExcelDataProvider.class,retryAnalyzer = RetryFailedTest.class)
 	public void MyInfoTest(HashMap<String,String> data) throws Exception {
 		new OrangeHRMLoginPage()
 		.enterUsername(data.get("Username"))

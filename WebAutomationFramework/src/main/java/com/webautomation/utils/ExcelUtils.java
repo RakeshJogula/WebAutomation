@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.webautomation.constants.FrameworkConstants;
+import com.webautomation.exceptions.InvalidPathForExcelException;
 
 public final class ExcelUtils {
 	
@@ -22,11 +22,8 @@ public final class ExcelUtils {
 	public static List<HashMap<String, String>> getTestDetails(String sheetName) {
 
 		List<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
-		FileInputStream fileInputStream = null;
-		XSSFWorkbook workbook = null;
-		try {
-			fileInputStream = new FileInputStream(FrameworkConstants.getExcelpath());
-			workbook = new XSSFWorkbook(fileInputStream);
+		try (FileInputStream fileInputStream = new FileInputStream(FrameworkConstants.getExcelpath());
+				XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);) {
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 
 			int numberOfRows = sheet.getLastRowNum();
@@ -43,25 +40,12 @@ public final class ExcelUtils {
 			}
 
 		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
+			throw new InvalidPathForExcelException("Excel File You are Trying to read is not found");
 		} catch (IOException e) {
+			throw new RuntimeException("File not Found");
 
-			e.printStackTrace();
-		} finally {
-			try {
-				if (Objects.nonNull(workbook)) {
-					workbook.close();
-				}
-				if (Objects.nonNull(fileInputStream)) {
-					fileInputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 		return data;
-
 	}
 
 }

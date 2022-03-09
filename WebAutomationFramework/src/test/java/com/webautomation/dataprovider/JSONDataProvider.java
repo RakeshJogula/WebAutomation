@@ -19,6 +19,5 @@ public class JSONDataProvider {
 				new TypeReference<HashMap<String, Object>>() {
 				});
 		return new Object[] {map};
-
 	}
 }

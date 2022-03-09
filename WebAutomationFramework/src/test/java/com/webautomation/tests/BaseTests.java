@@ -1,6 +1,8 @@
 package com.webautomation.tests;
 
 
+import java.util.HashMap;
+
 import org.testng.annotations.*;
 import com.webautomation.driver.Driver;
 
@@ -11,9 +13,12 @@ public class BaseTests {
 
 	}
 	
+	@SuppressWarnings("unchecked")
 	@BeforeMethod
-	public void setUp() throws Exception {
-		Driver.initDriver();
+	public void setUp(Object[] browserdata) throws Exception {
+		HashMap<String,String> test = (HashMap<String, String>) browserdata[0];
+		System.out.println(test.get("Browser"));
+		Driver.initDriver(test.get("Browser"));
 	}
 
 	@AfterMethod

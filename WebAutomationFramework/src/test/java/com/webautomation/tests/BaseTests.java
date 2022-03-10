@@ -17,8 +17,7 @@ public class BaseTests {
 	@BeforeMethod
 	public void setUp(Object[] browserdata) throws Exception {
 		HashMap<String,String> test = (HashMap<String, String>) browserdata[0];
-		System.out.println(test.get("Browser"));
-		Driver.initDriver(test.get("Browser"));
+		Driver.initDriver(test.get("Browser"),test.get("BrowserVersion"));
 	}
 
 	@AfterMethod

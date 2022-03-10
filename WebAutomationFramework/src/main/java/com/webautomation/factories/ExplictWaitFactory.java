@@ -17,6 +17,7 @@ public class ExplictWaitFactory {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static WebElement performExplicitWait(By by, WaitStratergy wait) {
 		WebElement element = null;
 		if (wait == WaitStratergy.CLICKABLE) {

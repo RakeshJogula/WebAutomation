@@ -6,7 +6,7 @@
  <listener class-name="com.webautomation.listeners.MethodInterceptor"></listener>
 
 </listeners>
-  <test thread-count="1" name="Test" parallel="methods">
+  <test thread-count="5" name="Test" parallel="methods">
     <classes>
       <class name="com.webautomation.tests.BaseTests"/>
       <class name="com.webautomation.tests.OrangeHRMTests"/>

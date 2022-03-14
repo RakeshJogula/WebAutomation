@@ -1,5 +1,7 @@
 package com.webautomation.driver;
 
+import java.util.Objects;
+
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -9,7 +11,11 @@ import org.openqa.selenium.WebDriver;
  * <b>Time</b> - 2:29:23 PM <br>
  * <b>Project Name</b> - WebAutomationFramework <br>
  * <b>Package Name</b> - com.webautomation.driver <br>
- * <pre>DriverManger - Manages All Driver objects created during Execution <br></pre>
+ * 
+ * <pre>
+ * DriverManger - Manages All Driver objects created during Execution <br>
+ * </pre>
+ * 
  * Class is declared as Final in order to avoid extending this class to other
  * class<br>
  * Constructor is declared as Private to avoid creating a new object<br>
@@ -30,11 +36,13 @@ public final class DriverManager {
 		return dr.get();
 	}
 
-	public static void setDriver(WebDriver driverref) {
-		dr.set(driverref);
+	static void setDriver(WebDriver driverref) {
+		if (Objects.nonNull(driverref)) {
+			dr.set(driverref);
+		}
 	}
 
-	public static void removeDriver() {
+	static void removeDriver() {
 		dr.remove();
 	}
 

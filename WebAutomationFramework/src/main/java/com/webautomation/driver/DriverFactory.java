@@ -56,7 +56,7 @@ public final class DriverFactory {
 				capability = new DesiredCapabilities();
 				capability.setBrowserName(browserName);
 				capability.setVersion(version);
-				webdriver = new RemoteWebDriver(new URL(""), capability);
+				webdriver = new RemoteWebDriver(new URL(PropertyUtils.get(ConfigProperties.SELENIUMGRIDURL)), capability);
 			} else {
 				WebDriverManager.chromedriver().setup();
 				webdriver = new ChromeDriver();
@@ -66,7 +66,7 @@ public final class DriverFactory {
 				capability = new DesiredCapabilities();
 				capability.setBrowserName(browserName);
 				capability.setVersion(version);
-				webdriver = new RemoteWebDriver(new URL(""), capability);
+				webdriver = new RemoteWebDriver(new URL(PropertyUtils.get(ConfigProperties.SELENIUMGRIDURL)), capability);
 			} else {
 				WebDriverManager.firefoxdriver().setup();
 				webdriver = new FirefoxDriver();

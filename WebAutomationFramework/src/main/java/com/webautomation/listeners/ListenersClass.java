@@ -9,6 +9,7 @@ import org.testng.ITestResult;
 import com.webautomation.annotations.FrameworkAnnotations;
 import com.webautomation.reports.ExtentLogger;
 import com.webautomation.reports.ExtentReport;
+import com.webautomation.utils.ELKUtils;
 
 public class ListenersClass implements ITestListener, ISuiteListener {
 
@@ -32,15 +33,18 @@ public class ListenersClass implements ITestListener, ISuiteListener {
 
 	public void onTestSuccess(ITestResult result) {
 		ExtentLogger.pass(result.getMethod().getMethodName() + "is passed");
+		ELKUtils.sendDetailsToELK(result.getMethod().getMethodName(), "pass");
 	}
 
 	public void onTestFailure(ITestResult result) {
 		ExtentLogger.fail(result.getMethod().getMethodName() + "is failed");
 		ExtentLogger.fail(result.getThrowable().getMessage());
+		ELKUtils.sendDetailsToELK(result.getMethod().getMethodName(), "fail");
 	}
 
 	public void onTestSkipped(ITestResult result) {
 		ExtentLogger.skip(result.getMethod().getMethodName() + "is skipped");
+		ELKUtils.sendDetailsToELK(result.getMethod().getMethodName(), "skip");
 	}
 
 }

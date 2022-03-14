@@ -1,10 +1,11 @@
 package com.webautomation.reports;
 
+import java.util.Objects;
 
 import com.aventstack.extentreports.ExtentTest;
 
 public class ExtentManager {
-	
+
 	private ExtentManager() {
 
 	}
@@ -15,11 +16,13 @@ public class ExtentManager {
 		return extentTest.get();
 	}
 
-	public static void setExtentTest(ExtentTest test) {
-		extentTest.set(test);
+	static void setExtentTest(ExtentTest test) {
+		if (Objects.nonNull(test)) {
+			extentTest.set(test);
+		}
 	}
 
-	public static void removeCurrentReport () {
+	static void removeCurrentReport() {
 		extentTest.remove();
 	}
 

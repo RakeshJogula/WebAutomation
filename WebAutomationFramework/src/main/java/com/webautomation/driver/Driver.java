@@ -1,5 +1,6 @@
 package com.webautomation.driver;
 
+import java.net.MalformedURLException;
 import java.util.Objects;
 
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.webautomation.enums.ConfigProperties;
+import com.webautomation.exceptions.BrowserInvocationException;
 import com.webautomation.reports.ExtentLogger;
 import com.webautomation.utils.PropertyUtils;
 
@@ -45,26 +47,14 @@ public final class Driver {
 	 * 
 	 * @param browser - chrome,firefox,ie
 	 */
-	public static void initDriver(String browser) {
+	@SuppressWarnings("deprecation")
+	public static void initDriver(String browser,String version) {
 		if (Objects.isNull(DriverManager.getDriver())) {
-			if (browser.equalsIgnoreCase("chrome")) {
-				WebDriverManager.chromedriver().setup();
-				DriverManager.setDriver(new ChromeDriver());
-			} else if (browser.equalsIgnoreCase("firefox")) {
-				WebDriverManager.firefoxdriver().setup();
-				DriverManager.setDriver(new FirefoxDriver());
-			} else if (browser.equalsIgnoreCase("ie")) {
-				DesiredCapabilities caps = new DesiredCapabilities();
-				caps.setCapability("ignoreZoomSetting", true);
-				WebDriverManager.iedriver().setup();
-				DriverManager.setDriver(new InternetExplorerDriver(caps));
-			} else if (browser.equalsIgnoreCase("edge")) {
-				WebDriverManager.iedriver().setup();
-				DriverManager.setDriver(new EdgeDriver());
-			} else {
-				ExtentLogger.skip("Invalid browser Name");
+			try {
+				DriverManager.setDriver(DriverFactory.getDriver(browser, version));
+			} catch (MalformedURLException e) {
+				throw new BrowserInvocationException("Please Check the Capabilites of Browser",e);
 			}
-
 			DriverManager.getDriver().get(PropertyUtils.get(ConfigProperties.URL));
 			DriverManager.getDriver().manage().window().maximize();
 		}
